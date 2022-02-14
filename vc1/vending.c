@@ -1,16 +1,30 @@
 //프로그램명: C언어로 자판기 프로그램 구현하기 
 #include <stdio.h>
 #pragma warning (disable:4996)
+/*void menuchange(int num, char name)
+{
+	int num;
+	char name[10];
+
+	printf("변경하실 품목의 번호를 선택하세요\n");
+	printf("1. 콜라 2. 사이다 3. 물 4. 커피\n");
+	printf("선택: ");
+	scanf("%d", &num);
+	printf("새로운 이름을 입력하세요: ");
+	scanf("%s", name);
+	printf("기존의 품목명이 %s로 변경되었습니다.\n", name);
+}*/
 int main(void)
 {
 	int start, choice, num, money, pay_money, remainder;// 음료 구입에 사용되는 변수들 
 	int manage_choice, manage_num, count; // 관리자 메뉴에 사용되는 변수들 
 	int pw, key; // 초기 설정된 비밀번호 
-	int C_cnt = 100;
-	int S_cnt = 100;
-	int W_cnt = 100;
-	int Co_cnt = 100; // 모든 음료의 개수를 100개로 초기화 
-	char new_name[10];
+	int C_cnt = 50;
+	int S_cnt = 50;
+	int W_cnt = 50;
+	int Co_cnt = 50; // 모든 음료의 개수를 100개로 초기화 
+	char name[10];
+	int how, coin, paper;
 
 	key = 123456;
 
@@ -37,7 +51,7 @@ int main(void)
 				printf("현재 재고는 %d개 입니다.\n", C_cnt);
 				printf("수량을 입력하세요: ");
 				scanf("%d", &num);
-				printf("투입 금액을 입력하세요: ");
+				printf("투입 금액을 입력하세요(최대 10000원): ");
 				scanf("%d", &money);
 
 				pay_money = num * 200;
@@ -56,9 +70,25 @@ int main(void)
 				}
 				else if (money > pay_money)
 				{
-					printf("거스름돈 %d원이 반환됩니다.\n", remainder);
-					C_cnt -= num;
-					printf("남은 재고는 %d개입니다.\n", C_cnt);
+					printf("거스름돈 반환방법을 선택하세요 (1.지폐반환 2.동전반환): \n");
+					printf("선택: ");
+					scanf("%d", &how);
+
+					if (how == 1)
+					{
+						paper = remainder / 1000;
+						coin = remainder - (paper * 1000);
+
+						printf("천원 지폐 %d장, 동전 %d원으로 반환됩니다.\n", paper, coin);
+						C_cnt -= num;
+						printf("남은 재고는 %d개입니다.\n", C_cnt);
+					}
+					else
+					{
+						printf("거스름돈 %d원이 반환됩니다.\n", remainder);
+						C_cnt -= num;
+						printf("남은 재고는 %d개입니다.\n", C_cnt);
+					}
 				}
 				
 			}
@@ -87,9 +117,25 @@ int main(void)
 				}
 				else if (money > pay_money)
 				{
-					printf("거스름돈 %d원이 반환됩니다.\n", remainder);
-					S_cnt -= num;
-					printf("남은 재고는 %d개입니다.\n", S_cnt);
+					printf("거스름돈 반환방법을 선택하세요 (1.지폐반환 2.동전반환): \n");
+					printf("선택: ");
+					scanf("%d", &how);
+
+					if (how == 1)
+					{
+						paper = remainder / 1000;
+						coin = remainder - (paper * 1000);
+
+						printf("천원 지폐 %d장, 동전 %d원으로 반환됩니다.\n", paper, coin);
+						C_cnt -= num;
+						printf("남은 재고는 %d개입니다.\n", C_cnt);
+					}
+					else
+					{
+						printf("거스름돈 %d원이 반환됩니다.\n", remainder);
+						C_cnt -= num;
+						printf("남은 재고는 %d개입니다.\n", C_cnt);
+					}
 				}
 			}
 
@@ -116,9 +162,27 @@ int main(void)
 				}
 				else
 				{
-					printf("거스름돈 %d원이 반환됩니다.\n", remainder);
-					W_cnt -= num;
-					printf("남은 재고는 %d개입니다.\n", W_cnt);
+					{
+						printf("거스름돈 반환방법을 선택하세요 (1.지폐반환 2.동전반환): \n");
+						printf("선택: ");
+						scanf("%d", &how);
+
+						if (how == 1)
+						{
+							paper = remainder / 1000;
+							coin = remainder - (paper * 1000);
+
+							printf("천원 지폐 %d장, 동전 %d원으로 반환됩니다.\n", paper, coin);
+							C_cnt -= num;
+							printf("남은 재고는 %d개입니다.\n", C_cnt);
+						}
+						else
+						{
+							printf("거스름돈 %d원이 반환됩니다.\n", remainder);
+							C_cnt -= num;
+							printf("남은 재고는 %d개입니다.\n", C_cnt);
+						}
+					}
 				}
 			}
 
@@ -145,9 +209,27 @@ int main(void)
 				}
 				else
 				{
-					printf("거스름돈 %d원이 반환됩니다.\n", remainder);
-					Co_cnt -= num;
-					printf("남은 재고는 %d개입니다.\n", Co_cnt);
+					{
+						printf("거스름돈 반환방법을 선택하세요 (1.지폐반환 2.동전반환): \n");
+						printf("선택: ");
+						scanf("%d", &how);
+
+						if (how == 1)
+						{
+							paper = remainder / 1000;
+							coin = remainder - (paper * 1000);
+
+							printf("천원 지폐 %d장, 동전 %d원으로 반환됩니다.\n", paper, coin);
+							C_cnt -= num;
+							printf("남은 재고는 %d개입니다.\n", C_cnt);
+						}
+						else
+						{
+							printf("거스름돈 %d원이 반환됩니다.\n", remainder);
+							C_cnt -= num;
+							printf("남은 재고는 %d개입니다.\n", C_cnt);
+						}
+					}
 				}
 			}
 
@@ -164,23 +246,14 @@ int main(void)
 				printf("------------------------------------------------------\n");
 				printf("|          관리자 메뉴로 이동하였습니다.             |\n");
 				printf("|           원하시는 기능을 선택하세요.              |\n");
-				printf("|1.메뉴 변경  3.수익확인 4.비밀번호 변경|\n");
+				printf("|   1.수익확인 2. 메뉴변경 3. 암호변경 4. 종료하기   |\n");
 				printf("------------------------------------------------------\n");
 				printf("선택: ");
 				scanf("%d", &start);
 
 				if (start == 1)
 				{
-					printf("변경할 재고 품목을 선택하세요.\n");
-					printf("1. 콜라 2. 사이다 3. 물 4. 커피\n");
-					printf("선택: ");
-					scanf("%d", &manage_num);
-					printf("변경할 메뉴명을 입력하세요: \n");
-					scanf("%s", new_name);
-					printf("메뉴가 변경되었습니다.\n");   
-
-
-
+					printf("총 수익은 %d원입니다.\n", );
 				}
 			}
 			else
@@ -190,7 +263,7 @@ int main(void)
 			}
 		}
 
-		else if (start == 3) // 자판기프로그램 종료하기 
+		else if (start == 4) // 자판기프로그램 종료하기 
 		{
 		printf("다음에 또 이용해주십시오.\n");
 		continue; // while반복문의 초기로 이동함. 
